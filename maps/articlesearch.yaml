@@ -1,0 +1,15 @@
+mapping:
+  article:
+    author:
+      _meta:
+        filter: titleCase
+        target: article.byline.author
+        # target: ../byline.author
+    num1: 9
+    num2:
+      value: 3
+      _meta:
+        type: string
+    otherArticles:
+      _meta:
+        recurse: 1

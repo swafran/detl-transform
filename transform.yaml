@@ -1,0 +1,15 @@
+settings:
+  name: indexArticlesToSearch
+  queue: rabbitQueue
+  readParser: jsonParser
+  writeFormatter: elasticFormatter
+  mapping: articleSearch
+confs:  
+  readQueue:
+    url: somevalue.com:3234
+    exchange: someExchange
+    key: rawToIndex
+  writeQueue:
+    url: somevalue.com:3234
+    exchange: someExchange
+    key: transformedToIndex
