@@ -24,9 +24,13 @@ func (parent *MapNode) AppendChild(child *MapNode) *MapNode {
 	return child
 }
 
-func (m *Map) AppendAt(child *MapNode, path path) *MapNode {}
+func (m *Map) AppendAt(child *MapNode, path path) *MapNode {
+	return &MapNode{}
+}
 
-func (m *Map) find(path) *MapNode {}
+func (m *Map) find(path) *MapNode {
+	return &MapNode{}
+}
 
 func (m *Map) parsePath(pathString string) (path path) {
 	return
