@@ -8,7 +8,6 @@ confs:
   dev:
     queue:
       url: localhost:5672
-      readExchange: someExchange
-      readKey: rawToIndex
+      readQueue: extractedq
       writeExchange: someExchange
       writeKey: transformedToIndex

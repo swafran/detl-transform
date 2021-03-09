@@ -20,12 +20,11 @@ func main() {
 
 	factory := factory{}
 	queue := factory.NewQueue(conf.Settings["queue"], conf.Confs[env]["queue"])
-
-	// parser = NewService(conf.Settings["readParser"], map[string]string{})
+	parser := factory.NewParser(conf.Settings["readParser"], map[string]string{})
 
 	// //// wrap in goroutine
-	// raw := queue.Consume()
-	// input := parser.Parse(raw)
+	raw := queue.Consume()
+	input := parser.Parse(raw)
 	// transformed := maps.Resolve(input, mapping)
 	// formatted := formatter.Format(transformed)
 	// queue.Publish(formatted)
@@ -33,7 +32,7 @@ func main() {
 
 	// queue.Close()
 
-	fmt.Println(queue)
+	fmt.Println(queue, parser, raw, input)
 
 	fmt.Println(mapping)
 
