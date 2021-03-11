@@ -19,20 +19,14 @@ func main() {
 	mapping := detl.GetArbitraryYaml("maps/" + conf.Settings["mapping"])
 
 	factory := factory{}
-	queue := factory.NewQueue(conf.Settings["queue"], conf.Confs[env]["queue"])
 	parser := factory.NewParser(conf.Settings["readParser"], map[string]string{})
+	handler := factory.NewHandler(conf.Settings["handler"], mapping, &parser)
+	queue := factory.NewQueue(conf.Settings["queue"], conf.Confs[env]["queue"], &handler)
 
-	// //// wrap in goroutine
-	raw := queue.Consume()
-	input := parser.Parse(raw)
-	// transformed := maps.Resolve(input, mapping)
-	// formatted := formatter.Format(transformed)
-	// queue.Publish(formatted)
-	// ////
+	defer queue.Close()
+	queue.Consume()
 
-	// queue.Close()
-
-	fmt.Println(queue, parser, raw, input)
+	fmt.Println(queue, parser)
 
 	fmt.Println(mapping)
 
