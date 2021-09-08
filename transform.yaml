@@ -1,10 +1,10 @@
 settings:
   name: indexArticlesToSearch
   queue: rabbitQueue
+  handler: mapHandler
   mapping: articleSearch
   readParser: jsonParser
   writeFormatter: elasticFormatter
-  handler: defaultHandler
 confs: 
   dev:
     queue:

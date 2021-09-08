@@ -3,9 +3,24 @@ mapping:
     author:
       _meta:
         filter: titleCase
-        target: article.byline.author
-        # target: ../byline.author
-    num1: 9
+        targets: 
+          - article.contributors[]
+          - ../byline.author
+      name: Joey Dafishi
+        _meta:
+          targets:
+            - '.'
+            - article.photos[2].caption
+      books:
+        - someTitle
+        - someOtherTitle
+      style:
+        verbosity: intense
+        sentences: long
+        sassy: true
+      age: 52
+    numLabel: 123
+    stringLabel: someString
     num2:
       value: 3
       _meta:

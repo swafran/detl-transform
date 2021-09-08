@@ -1,14 +1,13 @@
-package main
+package factory
 
 import (
 	"gitlab.com/detl/detl-common/parsers"
 	"gitlab.com/detl/detl-common/queues"
 	"gitlab.com/detl/transform/handlers"
+	"gitlab.com/detl/transform/maps"
 )
 
-type factory struct{}
-
-func (*factory) NewQueue(name string, conf map[string]string) queues.Queue {
+func NewQueue(name string, conf map[string]string, handler *handlers.Handler) queues.Queue {
 	switch name {
 	case "rabbitQueue":
 		queue := &queues.RabbitQueue{
@@ -16,6 +15,7 @@ func (*factory) NewQueue(name string, conf map[string]string) queues.Queue {
 			ReadQueue:     conf["readQueue"],
 			WriteExchange: conf["writeExchange"],
 			WriteKey:      conf["writeKey"],
+			Handler:       handler,
 			Conn:          nil,
 		}
 		queue.Init(conf)
@@ -27,25 +27,25 @@ func (*factory) NewQueue(name string, conf map[string]string) queues.Queue {
 	}
 }
 
-func (*factory) NewParser(name string, conf map[string]string) parsers.Parser {
+func NewParser(name string, conf map[string]string) parsers.Parser {
 	switch name {
 	case "jsonParser":
 		parser := parsers.JSONParser{}
 
-		return parser
+		return &parser
 
 	default:
 		return nil
 	}
 }
 
-func (*factory) NewHandler(name string,
+func NewHandler(name string,
 	mapping map[string]interface{}, parser *parsers.Parser) handlers.Handler {
 	switch name {
 	case "mapHandler":
-		handler := &handlers.MapHandler{Mapping: mapping, Parser: parser}
+		handler := handlers.MapHandler{Mapping: mapping, Parser: parser, MapTree: maps.MapTree{}}
 
-		return handler
+		return &handler
 
 	default:
 		return nil
