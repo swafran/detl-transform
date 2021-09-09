@@ -7,10 +7,10 @@ import (
 	"gitlab.com/detl/transform/maps"
 )
 
-func NewQueue(name string, conf map[string]string, handler *handlers.Handler) queues.Queue {
+func NewQueue(name string, conf map[string]string, handler handlers.Handler) queues.Queue {
 	switch name {
 	case "rabbitQueue":
-		queue := &queues.RabbitQueue{
+		queue := queues.RabbitQueue{
 			URL:           conf["url"],
 			ReadQueue:     conf["readQueue"],
 			WriteExchange: conf["writeExchange"],
@@ -20,7 +20,7 @@ func NewQueue(name string, conf map[string]string, handler *handlers.Handler) qu
 		}
 		queue.Init(conf)
 
-		return queue
+		return &queue
 
 	default:
 		return nil
@@ -40,10 +40,10 @@ func NewParser(name string, conf map[string]string) parsers.Parser {
 }
 
 func NewHandler(name string,
-	mapping map[string]interface{}, parser *parsers.Parser) handlers.Handler {
+	mapping map[string]interface{}, parser parsers.Parser) handlers.Handler {
 	switch name {
 	case "mapHandler":
-		handler := handlers.MapHandler{Mapping: mapping, Parser: parser, MapTree: maps.MapTree{}}
+		handler := handlers.MapHandler{Mapping: mapping, Parser: parser, MapTree: &maps.MapTree{}}
 
 		return &handler
 

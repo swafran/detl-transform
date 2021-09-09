@@ -1,16 +1,15 @@
 mapping:
   article:
     author:
-      _meta:
-        filter: titleCase
-        targets: 
-          - article.contributors[]
-          - ../byline.author
-      name: Joey Dafishi
-        _meta:
-          targets:
-            - '.'
-            - article.photos[2].caption
+      filter: titleCase
+      targets: 
+        - article.contributors[]
+        - ../byline.author
+      name: 
+        value: Joey Dafishi     #this is a leaf
+        targets:
+          - '.'
+          - article.photos[2].caption
       books:
         - someTitle
         - someOtherTitle
@@ -18,7 +17,8 @@ mapping:
         verbosity: intense
         sentences: long
         sassy: true
-      age: 52
+      age:
+        value: 52               #this either adds a field named 'age', or if it already exists, forces the value to 52
     numLabel: 123
     stringLabel: someString
     num2:
