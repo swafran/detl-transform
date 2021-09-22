@@ -1,18 +1,27 @@
 mapping:
   article:
     author:
-      filter: titleCase
-      targets: 
+      +filters:
+        - titleCase
+      +targets: 
         - article.contributors[]
         - ../byline.author
       name: 
-        value: Joey Dafishi     #this is a leaf
-        targets:
-          - '.'
+        +value: Joey Daficci     #overwrite this value; leaf
+        +targets:
           - article.photos[2].caption
-      books:
-        - someTitle
-        - someOtherTitle
+      nickname: Joey the fish    #overwrite this value; leaf
+      favorite_sportsteam: .     #include this unchanged; leaf
+      tv_shows: .                #include this unchanged; recurse 
+      awards:
+        +recurse: 1
+      books:                    
+        +values:
+          - someTitle           #this either creates or overwrites an array named books
+          - someOtherTitle
+      movies:
+        +append:
+          - "The Great Escape"   #this either creates or appends to an array named books
       style:
         verbosity: intense
         sentences: long
@@ -23,8 +32,6 @@ mapping:
     stringLabel: someString
     num2:
       value: 3
-      _meta:
-        type: string
+      type: string
     otherArticles:
-      _meta:
-        recurse: 1
+      recurse: 1

@@ -27,4 +27,8 @@ func main() {
 	queue.Consume()
 
 	fmt.Println("nuthin")
+
+	fmt.Println("nuthin")
+
+	return
 }
