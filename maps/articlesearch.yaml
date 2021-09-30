@@ -1,37 +1,52 @@
 mapping:
-  article:
-    author:
-      +filters:
-        - titleCase
-      +targets: 
-        - article.contributors[]
-        - ../byline.author
-      name: 
-        +value: Joey Daficci     #overwrite this value; leaf
-        +targets:
-          - article.photos[2].caption
-      nickname: Joey the fish    #overwrite this value; leaf
-      favorite_sportsteam: .     #include this unchanged; leaf
-      tv_shows: .                #include this unchanged; recurse 
-      awards:
-        +recurse: 1
-      books:                    
-        +values:
-          - someTitle           #this either creates or overwrites an array named books
-          - someOtherTitle
-      movies:
-        +append:
-          - "The Great Escape"   #this either creates or appends to an array named books
-      style:
-        verbosity: intense
-        sentences: long
+  article.issue_numer:
+    omit: true
+  article.published:
+    boolean: true
+  article.author:
+    filters:
+      - titleCase
+    targets: 
+      - article.contributors[]
+      - ../byline.author
+  article.author.name: 
+    value: Joey Daficci     #overwrite this value; leaf
+    targets:
+      - article.photos[2].caption
+  article.author.nickname: 
+    value: Joey the fish    #overwrite this value; leaf
+  article.author.favorite_sportsteam:
+  article.author.awards:
+    recurse: 1
+  article.author.books:                    
+    values:
+      - someTitle           #this either creates or overwrites an array named books
+      - someOtherTitle
+  article.author.tv_shows:
+    append:
+      - Wheel of Fortune    #appends value(s)
+    sort: alpha             #alpha|num
+    order: asc              #asc|desc
+  article.author.charities:
+    append:
+      - Red Cross                   
+
+  article.author.movies:
+    append_obj:             #gets read as map[string]interface{} and looped over to get object out of it, to append as node
+      "0":
+        title: "The Great Escape",
+        director:
+          name: Kurtz Weil
+          age: 12
+        verbosity: intense,
+        sentences: long,
         sassy: true
-      age:
-        value: 52               #this either adds a field named 'age', or if it already exists, forces the value to 52
-    numLabel: 123
-    stringLabel: someString
-    num2:
-      value: 3
-      type: string
-    otherArticles:
-      recurse: 1
+      "1":
+        title: "Big Momma"
+                           #prepend_obj also possible
+                           #if movies in the original data is an array, elements will be appended/prepended in order written 
+                           #in this file (key is ignored)
+                           #if movies is an object, elements will be attached as properties of the object (with the key as property name)
+  article.author.age:
+      num: 52             #num for numbers, value for string, bool for bools
+                          #this either adds a field named 'age', or if it already exists, forces the value to 52
