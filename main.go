@@ -5,6 +5,7 @@ import (
 
 	"gitlab.com/detl/detl-common"
 	"gitlab.com/detl/transform/factory"
+	"gitlab.com/detl/transform/maps"
 )
 
 const (
@@ -17,7 +18,7 @@ const (
 
 func main() {
 	conf := detl.GetConf("transform")
-	mapping := detl.GetArbitraryYaml("maps/" + conf.Settings["mapping"])
+	mapping := maps.GetYamlMapping("maps/" + conf.Settings["mapping"])
 
 	parser := factory.NewParser(conf.Settings["readParser"], map[string]string{})
 	handler := factory.NewHandler(conf.Settings["handler"], mapping, parser)
