@@ -11,7 +11,7 @@ import (
 
 //MapHandler is the default handler, applies map to data; implements Handler
 type MapHandler struct {
-	Mapping map[string]interface{}
+	Mapping maps.Mapping
 	Parser  parsers.Parser
 	MapTree *maps.MapTree
 }
