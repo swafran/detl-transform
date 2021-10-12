@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 
-	"gitlab.com/detl/detl-common"
-	"gitlab.com/detl/transform/factory"
+	detl "github.com/swafran/detl-common"
+	"github.com/swafran/detl-transform/factory"
 )
 
 const (

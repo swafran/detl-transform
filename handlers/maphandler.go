@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"time"
 
-	"gitlab.com/detl/detl-common/parsers"
-	"gitlab.com/detl/detl-common/system"
-	"gitlab.com/detl/transform/maps"
+	"github.com/swafran/detl-common/parsers"
+	"github.com/swafran/detl-common/system"
+	"github.com/swafran/detl-transform/maps"
 )
 
 //MapHandler is the default handler, applies map to data; implements Handler

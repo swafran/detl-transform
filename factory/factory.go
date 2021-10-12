@@ -1,10 +1,10 @@
 package factory
 
 import (
-	"gitlab.com/detl/detl-common/parsers"
-	"gitlab.com/detl/detl-common/queues"
-	"gitlab.com/detl/transform/handlers"
-	"gitlab.com/detl/transform/maps"
+	"github.com/swafran/detl-common/parsers"
+	"github.com/swafran/detl-common/queues"
+	"github.com/swafran/detl-transform/handlers"
+	"github.com/swafran/detl-transform/maps"
 )
 
 func NewQueue(name string, conf map[string]string, handler handlers.Handler) queues.Queue {
