@@ -5,6 +5,7 @@ import (
 
 	detl "github.com/swafran/detl-common"
 	"github.com/swafran/detl-transform/factory"
+	"github.com/swafran/detl-transform/maps"
 )
 
 const (
@@ -17,7 +18,7 @@ const (
 
 func main() {
 	conf := detl.GetConf("transform")
-	mapping := detl.GetArbitraryYaml("maps/" + conf.Settings["mapping"])
+	mapping := maps.GetMapping("maps/" + conf.Settings["mapping"])
 
 	parser := factory.NewParser(conf.Settings["readParser"], map[string]string{})
 	handler := factory.NewHandler(conf.Settings["handler"], mapping, parser)
@@ -27,4 +28,8 @@ func main() {
 	queue.Consume()
 
 	fmt.Println("nuthin")
+
+	fmt.Println("nuthin")
+
+	return
 }

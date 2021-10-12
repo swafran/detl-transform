@@ -40,7 +40,7 @@ func NewParser(name string, conf map[string]string) parsers.Parser {
 }
 
 func NewHandler(name string,
-	mapping map[string]interface{}, parser parsers.Parser) handlers.Handler {
+	mapping maps.Mapping, parser parsers.Parser) handlers.Handler {
 	switch name {
 	case "mapHandler":
 		handler := handlers.MapHandler{Mapping: mapping, Parser: parser, MapTree: &maps.MapTree{}}
