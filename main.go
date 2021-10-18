@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	"os"
 
 	detl "github.com/swafran/detl-common"
 	"github.com/swafran/detl-transform/factory"
@@ -11,10 +11,9 @@ import (
 const (
 	maxCPUPct uint8 = 95
 	maxMemPct uint8 = 95
-
-	// TODO decide on handling environments, but temporarily, for now:
-	env = "dev"
 )
+
+var env string = os.Getenv("ENV")
 
 func main() {
 	conf := detl.GetConf("transform")
@@ -26,10 +25,4 @@ func main() {
 
 	defer queue.Close()
 	queue.Consume()
-
-	fmt.Println("nuthin")
-
-	fmt.Println("nuthin")
-
-	return
 }
