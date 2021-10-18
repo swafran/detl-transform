@@ -1,4 +1,4 @@
-package factory
+package main
 
 import (
 	"github.com/swafran/detl-common/parsers"
@@ -7,7 +7,7 @@ import (
 	"github.com/swafran/detl-transform/maps"
 )
 
-func NewQueue(name string, conf map[string]string, handler handlers.Handler) queues.Queue {
+func NewQueue(name string, conf map[string]string, handler queues.Handler) queues.Queue {
 	switch name {
 	case "rabbitQueue":
 		queue := queues.RabbitQueue{
@@ -40,7 +40,7 @@ func NewParser(name string, conf map[string]string) parsers.Parser {
 }
 
 func NewHandler(name string,
-	mapping maps.Mapping, parser parsers.Parser) handlers.Handler {
+	mapping maps.Mapping, parser parsers.Parser) queues.Handler {
 	switch name {
 	case "mapHandler":
 		handler := handlers.MapHandler{Mapping: mapping, Parser: parser, MapTree: &maps.MapTree{}}
