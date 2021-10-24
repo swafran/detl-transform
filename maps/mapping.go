@@ -26,7 +26,6 @@ type Mapping map[string]MappingEl
 
 // GetMapping returns YamlMapping object from yaml file
 func GetMapping(settingsName string) Mapping {
-	var doy Mapping
 
 	//var mapping interface{}
 	var mapping Mapping
@@ -37,6 +36,5 @@ func GetMapping(settingsName string) Mapping {
 	detl.Check(err)
 	detl.Check(err2)
 
-	return doy
-	//return mapping
+	return mapping
 }

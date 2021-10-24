@@ -14,7 +14,6 @@ func NewQueue(name string, conf map[string]string, handler queues.Handler) queue
 			URL:           conf["url"],
 			ReadQueue:     conf["readQueue"],
 			WriteExchange: conf["writeExchange"],
-			WriteKey:      conf["writeKey"],
 			Handler:       handler,
 			Conn:          nil,
 		}

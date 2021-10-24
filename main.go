@@ -12,9 +12,9 @@ const (
 	maxMemPct uint8 = 95
 )
 
-var env string = os.Getenv("ENV")
-
 func main() {
+	env := os.Getenv("ENV")
+
 	conf := detl.GetConf("transform")
 	mapping := maps.GetMapping("maps/" + conf.Settings["mapping"])
 

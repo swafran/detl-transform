@@ -57,10 +57,8 @@ func (h *MapHandler) traverse(input interface{}, n *maps.MapNode,
 		n.Value = input.(string)
 
 	case []interface{}:
-
-		mappingLevel = mappingLevel.([]interface{})
-
 		// (json arrays)
+
 	case map[string]interface{}:
 		// json objects
 	case nil:

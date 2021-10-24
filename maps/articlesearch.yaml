@@ -5,7 +5,8 @@ article.published:
 article.author:
   filters:
     - titleCase
-  targets: 
+  targets:                #if you specify target(s), node will be moved to targets and not attached to its original parent 
+    - ..                  #unless you specify parent as a target like so
     - article.contributors[]
     - ../byline.author
 article.author.name: 
